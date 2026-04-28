@@ -17,6 +17,36 @@ class User extends Authenticatable
     /** @use HasFactory<UserFactory> */
     use HasFactory, Notifiable;
 
+    protected $fillable = [
+        'name',
+        'email',
+        'password',
+    ];
+
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
+
+    // Les projets auxquels l'utilisateur appartient
+    public function projects()
+    {
+        return $this->hasMany(Project::class)
+                    ->withPivot('role')
+                    ->withTimestamps();
+    }
+
+    // Les commentaires de l'utilisateur
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
+    // Les tâches assignées à l'utilisateur
+    public function tasks(){
+        return $this->hasMany(Task::class, 'assigned_to');
+    }
+
     /**
      * Get the attributes that should be cast.
      *
