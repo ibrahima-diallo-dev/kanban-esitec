@@ -17,9 +17,10 @@ class TaskSeeder extends Seeder
         foreach ($projects as $project) {
             foreach (range(1, 5) as $i) {
                 Task::create([
-                    'titre' => fake()->sentence(),
+                    'title' => fake()->sentence(),
                     'description' => fake()->paragraph(),
-                    'status' => fake()->randomElement(['todo', 'in_progress', 'done']),
+                    'status' => fake()->randomElement(['todo', 'doing', 'done']),
+                    'priority' => fake()->randomElement(['haute', 'moyenne', 'basse']),
                     'project_id' => $project->id,
                     'assigned_to' => $users->random()->id,
                 ]);

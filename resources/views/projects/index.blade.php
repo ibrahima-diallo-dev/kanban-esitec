@@ -59,13 +59,7 @@
     </div>
 
     {{-- Grille des projets --}}
-    @forelse($projects as $project)
-    @php
-        $colors = ['color-blue','color-violet','color-rose','color-teal','color-amber'];
-        $color  = $colors[$project->id % count($colors)];
-    @endphp
     <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;">
-    @endforelse
 
     @forelse($projects as $project)
     @php

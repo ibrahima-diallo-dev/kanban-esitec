@@ -176,7 +176,7 @@
 
                 {{-- Supprimer son propre commentaire --}}
                 @if(auth()->id() === $comment->user_id || auth()->user()->isAdmin())
-                <form method="POST" action="{{ route('comments.destroy', $comment) }}" style="margin-top:4px;">
+                <form method="POST" action="{{ route('comments.destroy', [$project, $task, $comment]) }}" style="margin-top:4px;">
                     @csrf @method('DELETE')
                     <button type="submit" style="font-size:11px;color:#6b6d8a;background:none;border:none;cursor:pointer;padding:0;"
                             onmouseover="this.style.color='#dc2626'"

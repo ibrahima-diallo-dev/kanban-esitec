@@ -17,8 +17,8 @@ class ProjectSeeder extends Seeder
         $users = User::all();
 
         foreach(range(1,5) as $i){
-            $project =Project::create([
-                'nom' => "Project". $i,
+            $project = Project::create([
+                'name' => "Projet ". $i,
                 'description' => fake()->paragraph(),
                 'created_by' => $users->random()->id
             ]);

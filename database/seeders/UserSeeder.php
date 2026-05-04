@@ -18,7 +18,8 @@ class UserSeeder extends Seeder
         User::create([
             'name' => 'Admin',
             'email' => 'admin@kanban.com',
-            'password' => Hash::make('password')
+            'password' => Hash::make('password'),
+            'role' => 'admin',
         ]);
 
         //Membres avec faker

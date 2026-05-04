@@ -2,8 +2,11 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Task extends Model
@@ -13,37 +16,43 @@ class Task extends Model
     protected $fillable = [
         'title',
         'description',
+        'status',
+        'priority',
         'project_id',
         'assigned_to',
     ];
-    // le projet auquel la tâche appartient
-    public function project()
+
+    public function project(): BelongsTo
     {
         return $this->belongsTo(Project::class);
-}
-    // l'utilisateur à qui la tâche est assignée
-    public function assignedTo()
+    }
+
+    public function assignedUser(): BelongsTo
     {
         return $this->belongsTo(User::class, 'assigned_to');
     }
-    // les commentaires de la tâche
-    public function comments()
+
+    public function assignee(): BelongsTo
+    {
+        return $this->assignedUser();
+    }
+
+    public function comments(): HasMany
     {
         return $this->hasMany(Comment::class);
-    }   
+    }
 
-    // Scopes par statut
-    public function scopeToDo($query)
+    public function scopeToDo(Builder $query): Builder
     {
         return $query->where('status', 'todo');
     }
 
-    public function scopeInProgress($query)
+    public function scopeDoing(Builder $query): Builder
     {
-        return $query->where('status', 'in_progress');
+        return $query->where('status', 'doing');
     }
 
-    public function scopeDone($query)
+    public function scopeDone(Builder $query): Builder
     {
         return $query->where('status', 'done');
     }
