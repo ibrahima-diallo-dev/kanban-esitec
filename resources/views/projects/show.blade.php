@@ -8,7 +8,7 @@
 @media(max-width:768px){ .board { grid-template-columns:1fr; } }
 
 .column { border-radius:16px; padding:14px; }
-.col-todo  { background:#f0f4ff; border:1px solid #c7d2fe; }
+.col-todo  { background:#eaf4fb; border:1px solid #c7d2fe; }
 .col-doing { background:#fffbeb; border:1px solid #fcd34d; }
 .col-done  { background:#f0fdf4; border:1px solid #86efac; }
 
@@ -25,7 +25,7 @@
     background:#fff; border-radius:12px; padding:13px; margin-bottom:9px;
     border:1px solid transparent; transition:.15s; display:block; text-decoration:none; color:inherit;
 }
-.task-card:hover { border-color:#4f6ef7; transform:translateY(-2px); box-shadow:0 4px 12px rgba(79,110,247,.1); }
+.task-card:hover { border-color:#0b5f9f; transform:translateY(-2px); box-shadow:0 4px 12px rgba(11,95,159,.1); }
 
 .priority-badge { font-size:10px; font-weight:700; text-transform:uppercase; padding:2px 7px; border-radius:5px; letter-spacing:.04em; }
 .p-haute   { background:#fef2f2; color:#dc2626; }
@@ -34,7 +34,7 @@
 
 .task-av {
     width:22px; height:22px; border-radius:6px;
-    background:linear-gradient(135deg,#4f6ef7,#7c3aed);
+    background:linear-gradient(135deg,#0b5f9f,#009e92);
     display:flex; align-items:center; justify-content:center;
     font-size:9px; font-weight:700; color:#fff; flex-shrink:0;
 }
@@ -76,7 +76,7 @@
             {{-- Membres du projet --}}
             <div style="display:flex;align-items:center;margin-right:8px;">
                 @foreach($project->members->take(5) as $member)
-                <div style="width:30px;height:30px;border-radius:8px;background:linear-gradient(135deg,#4f6ef7,#7c3aed);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff;border:2px solid #fff;margin-left:-8px;" title="{{ $member->name }}">
+                <div style="width:30px;height:30px;border-radius:8px;background:linear-gradient(135deg,#0b5f9f,#009e92);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff;border:2px solid #fff;margin-left:-8px;" title="{{ $member->name }}">
                     {{ strtoupper(substr($member->name, 0, 2)) }}
                 </div>
                 @endforeach
@@ -90,7 +90,7 @@
             @endif
 
             <a href="{{ route('tasks.create', $project) }}"
-               style="padding:7px 14px;border-radius:9px;font-size:12.5px;font-weight:600;background:#4f6ef7;color:#fff;text-decoration:none;display:flex;align-items:center;gap:5px;">
+               style="padding:7px 14px;border-radius:9px;font-size:12.5px;font-weight:600;background:#0b5f9f;color:#fff;text-decoration:none;display:flex;align-items:center;gap:5px;">
                 <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
                 Ajouter une tâche
             </a>
@@ -104,7 +104,7 @@
             <p style="font-size:11px;font-weight:600;color:#6b6d8a;text-transform:uppercase;letter-spacing:.04em;">Total</p>
             <p style="font-size:22px;font-weight:700;color:#0e0f1a;">{{ $total }}</p>
         </div>
-        <div style="background:#f0f4ff;border:1px solid #c7d2fe;border-radius:12px;padding:12px 16px;">
+        <div style="background:#eaf4fb;border:1px solid #c7d2fe;border-radius:12px;padding:12px 16px;">
             <p style="font-size:11px;font-weight:600;color:#3730a3;text-transform:uppercase;letter-spacing:.04em;">À faire</p>
             <p style="font-size:22px;font-weight:700;color:#3730a3;">{{ $todo->count() }}</p>
         </div>

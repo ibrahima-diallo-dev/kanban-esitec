@@ -6,7 +6,9 @@ use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\TaskController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', fn () => view('welcome'));
+Route::get('/', fn () => auth()->check()
+    ? redirect()->route('projects.index')
+    : redirect()->route('login'));
 
 Route::get('/dashboard', fn () => redirect()->route('projects.index'))
     ->middleware(['auth', 'verified'])
@@ -17,7 +19,14 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::resource('projects', ProjectController::class);
+    Route::get('/projects', [ProjectController::class, 'index'])->name('projects.index');
+    Route::get('/projects/create', [ProjectController::class, 'create'])->middleware('admin')->name('projects.create');
+    Route::post('/projects', [ProjectController::class, 'store'])->middleware('admin')->name('projects.store');
+    Route::get('/projects/{project}', [ProjectController::class, 'show'])->name('projects.show');
+    Route::get('/projects/{project}/edit', [ProjectController::class, 'edit'])->middleware('admin')->name('projects.edit');
+    Route::put('/projects/{project}', [ProjectController::class, 'update'])->middleware('admin')->name('projects.update');
+    Route::patch('/projects/{project}', [ProjectController::class, 'update'])->middleware('admin');
+    Route::delete('/projects/{project}', [ProjectController::class, 'destroy'])->middleware('admin')->name('projects.destroy');
 
     Route::get('/projects/{project}/tasks/create', [TaskController::class, 'create'])->name('tasks.create');
     Route::post('/projects/{project}/tasks', [TaskController::class, 'store'])->name('tasks.store');
