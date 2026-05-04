@@ -9,13 +9,13 @@
     font-size:12px; font-weight:700; padding:5px 13px;
     border-radius:8px; letter-spacing:.02em;
 }
-.status-todo  { background:#f0f4ff; color:#3730a3; border:1px solid #c7d2fe; }
+.status-todo  { background:#eaf4fb; color:#3730a3; border:1px solid #c7d2fe; }
 .status-doing { background:#fffbeb; color:#92400e; border:1px solid #fcd34d; }
 .status-done  { background:#f0fdf4; color:#166534; border:1px solid #86efac; }
 
 .comment-av {
     width:30px; height:30px; border-radius:8px; flex-shrink:0;
-    background:linear-gradient(135deg,#4f6ef7,#7c3aed);
+    background:linear-gradient(135deg,#0b5f9f,#009e92);
     display:flex; align-items:center; justify-content:center;
     font-size:11px; font-weight:700; color:#fff;
 }
@@ -79,7 +79,7 @@
                 <p style="font-size:10.5px;font-weight:700;color:#6b6d8a;text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px;">Assigné à</p>
                 @if($task->assignedUser)
                 <div style="display:flex;align-items:center;gap:8px;">
-                    <div style="width:26px;height:26px;border-radius:7px;background:linear-gradient(135deg,#4f6ef7,#7c3aed);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff;">
+                    <div style="width:26px;height:26px;border-radius:7px;background:linear-gradient(135deg,#0b5f9f,#009e92);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff;">
                         {{ strtoupper(substr($task->assignedUser->name, 0, 2)) }}
                     </div>
                     <span style="font-size:13px;font-weight:600;color:#0e0f1a;">{{ $task->assignedUser->name }}</span>
@@ -112,7 +112,7 @@
                 @csrf
                 @method('PATCH')
                 <button type="submit" name="status" value="todo"
-                        style="padding:7px 14px;border-radius:9px;font-size:12.5px;font-weight:600;cursor:pointer;border:1px solid #c7d2fe;background:{{ $task->status==='todo' ? '#c7d2fe' : '#f0f4ff' }};color:#3730a3;">
+                        style="padding:7px 14px;border-radius:9px;font-size:12.5px;font-weight:600;cursor:pointer;border:1px solid #c7d2fe;background:{{ $task->status==='todo' ? '#c7d2fe' : '#eaf4fb' }};color:#3730a3;">
                     À faire
                 </button>
                 <button type="submit" name="status" value="doing"
@@ -201,19 +201,19 @@
                     </div>
                     <div style="flex:1;">
                         <textarea name="body" rows="3"
-                                  placeholder="Écrire un commentaire…"
+                                  placeholder="Ajouter une note à l'équipe..."
                                   class="w-full"
                                   style="width:100%;padding:10px 14px;border:1px solid #e8e9f2;border-radius:12px;font-size:13px;font-family:inherit;resize:none;background:#f9f9fc;outline:none;transition:.15s;"
-                                  onfocus="this.style.borderColor='#4f6ef7';this.style.background='#fff'"
+                                  onfocus="this.style.borderColor='#0b5f9f';this.style.background='#fff'"
                                   onblur="this.style.borderColor='#e8e9f2';this.style.background='#f9f9fc'">{{ old('body') }}</textarea>
                         @error('body')
                         <p class="text-xs text-red-500 mt-1">{{ $message }}</p>
                         @enderror
                         <div style="display:flex;justify-content:flex-end;margin-top:8px;">
                             <button type="submit"
-                                    style="padding:8px 18px;border-radius:9px;font-size:13px;font-weight:600;background:#4f6ef7;color:#fff;border:none;cursor:pointer;transition:.15s;"
-                                    onmouseover="this.style.background='#3b55e0'"
-                                    onmouseout="this.style.background='#4f6ef7'">
+                                    style="padding:8px 18px;border-radius:9px;font-size:13px;font-weight:600;background:#0b5f9f;color:#fff;border:none;cursor:pointer;transition:.15s;"
+                                    onmouseover="this.style.background='#00786f'"
+                                    onmouseout="this.style.background='#0b5f9f'">
                                 Envoyer
                             </button>
                         </div>

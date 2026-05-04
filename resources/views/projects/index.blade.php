@@ -9,11 +9,11 @@
     padding:20px; cursor:pointer; transition:.2s; position:relative; overflow:hidden;
     text-decoration:none; display:block; color:inherit;
 }
-.project-card:hover { border-color:#4f6ef7; transform:translateY(-3px); box-shadow:0 8px 24px rgba(79,110,247,.1); }
+.project-card:hover { border-color:#0b5f9f; transform:translateY(-3px); box-shadow:0 8px 24px rgba(11,95,159,.1); }
 .project-card::before {
     content:''; position:absolute; top:0; left:0; right:0; height:4px; border-radius:16px 16px 0 0;
 }
-.color-blue::before   { background:#4f6ef7; }
+.color-blue::before   { background:#0b5f9f; }
 .color-violet::before { background:#8b5cf6; }
 .color-rose::before   { background:#f43f5e; }
 .color-teal::before   { background:#14b8a6; }
@@ -21,7 +21,7 @@
 
 .member-av {
     width:24px; height:24px; border-radius:7px;
-    background:linear-gradient(135deg,#4f6ef7,#7c3aed);
+    background:linear-gradient(135deg,#0b5f9f,#009e92);
     display:flex; align-items:center; justify-content:center;
     font-size:10px; font-weight:700; color:#fff;
     border:2px solid #fff; margin-left:-7px;
@@ -29,11 +29,11 @@
 .member-av:first-child { margin-left:0; }
 
 .btn-primary {
-    background:#4f6ef7; color:#fff; border:none; border-radius:10px;
+    background:#0b5f9f; color:#fff; border:none; border-radius:10px;
     padding:9px 16px; font-size:13.5px; font-weight:600; cursor:pointer; transition:.15s;
     display:inline-flex; align-items:center; gap:6px; text-decoration:none;
 }
-.btn-primary:hover { background:#3b55e0; }
+.btn-primary:hover { background:#00786f; }
 </style>
 @endpush
 
@@ -86,7 +86,7 @@
                 <span style="font-size:11px;font-weight:700;color:#0e0f1a;">{{ $pct }}%</span>
             </div>
             <div style="height:5px;background:#f0f0f8;border-radius:99px;overflow:hidden;">
-                <div style="height:100%;border-radius:99px;background:#4f6ef7;width:{{ $pct }}%;transition:.3s;"></div>
+                <div style="height:100%;border-radius:99px;background:#0b5f9f;width:{{ $pct }}%;transition:.3s;"></div>
             </div>
         </div>
 

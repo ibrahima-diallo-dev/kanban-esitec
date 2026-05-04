@@ -7,11 +7,11 @@
 
     {{-- Fil d'ariane --}}
     <nav style="display:flex;align-items:center;gap:8px;font-size:13px;color:#6b6d8a;margin-bottom:24px;">
-        <a href="{{ route('projects.index') }}" style="color:#6b6d8a;text-decoration:none;" onmouseover="this.style.color='#4f6ef7'" onmouseout="this.style.color='#6b6d8a'">Projets</a>
+        <a href="{{ route('projects.index') }}" style="color:#6b6d8a;text-decoration:none;" onmouseover="this.style.color='#0b5f9f'" onmouseout="this.style.color='#6b6d8a'">Projets</a>
         <span>›</span>
-        <a href="{{ route('projects.show', $project) }}" style="color:#6b6d8a;text-decoration:none;" onmouseover="this.style.color='#4f6ef7'" onmouseout="this.style.color='#6b6d8a'">{{ $project->name }}</a>
+        <a href="{{ route('projects.show', $project) }}" style="color:#6b6d8a;text-decoration:none;" onmouseover="this.style.color='#0b5f9f'" onmouseout="this.style.color='#6b6d8a'">{{ $project->name }}</a>
         <span>›</span>
-        <a href="{{ route('tasks.show', [$project, $task]) }}" style="color:#6b6d8a;text-decoration:none;" onmouseover="this.style.color='#4f6ef7'" onmouseout="this.style.color='#6b6d8a'">{{ Str::limit($task->title, 30) }}</a>
+        <a href="{{ route('tasks.show', [$project, $task]) }}" style="color:#6b6d8a;text-decoration:none;" onmouseover="this.style.color='#0b5f9f'" onmouseout="this.style.color='#6b6d8a'">{{ Str::limit($task->title, 30) }}</a>
         <span>›</span>
         <span style="color:#0e0f1a;font-weight:500;">Modifier</span>
     </nav>
@@ -32,7 +32,7 @@
                 </label>
                 <input type="text" name="title" value="{{ old('title', $task->title) }}" required
                        style="width:100%;padding:10px 14px;border:1px solid {{ $errors->has('title') ? '#fca5a5' : '#e8e9f2' }};border-radius:10px;font-size:13.5px;font-family:inherit;background:#f9f9fc;outline:none;transition:.15s;"
-                       onfocus="this.style.borderColor='#4f6ef7';this.style.background='#fff'"
+                       onfocus="this.style.borderColor='#0b5f9f';this.style.background='#fff'"
                        onblur="this.style.borderColor='{{ $errors->has('title') ? '#fca5a5' : '#e8e9f2' }}';this.style.background='#f9f9fc'">
                 @error('title')
                 <p style="color:#dc2626;font-size:12px;margin-top:4px;">{{ $message }}</p>
@@ -46,7 +46,7 @@
                 </label>
                 <textarea name="description" rows="3"
                           style="width:100%;padding:10px 14px;border:1px solid #e8e9f2;border-radius:10px;font-size:13.5px;font-family:inherit;background:#f9f9fc;outline:none;resize:none;transition:.15s;"
-                          onfocus="this.style.borderColor='#4f6ef7';this.style.background='#fff'"
+                          onfocus="this.style.borderColor='#0b5f9f';this.style.background='#fff'"
                           onblur="this.style.borderColor='#e8e9f2';this.style.background='#f9f9fc'">{{ old('description', $task->description) }}</textarea>
             </div>
 
@@ -104,9 +104,9 @@
                         Annuler
                     </a>
                     <button type="submit"
-                            style="padding:9px 22px;border-radius:10px;font-size:13.5px;font-weight:700;background:#4f6ef7;color:#fff;border:none;cursor:pointer;transition:.15s;"
-                            onmouseover="this.style.background='#3b55e0'"
-                            onmouseout="this.style.background='#4f6ef7'">
+                            style="padding:9px 22px;border-radius:10px;font-size:13.5px;font-weight:700;background:#0b5f9f;color:#fff;border:none;cursor:pointer;transition:.15s;"
+                            onmouseover="this.style.background='#00786f'"
+                            onmouseout="this.style.background='#0b5f9f'">
                         Enregistrer
                     </button>
                 </div>

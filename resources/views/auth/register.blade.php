@@ -3,65 +3,59 @@
 @section('title', 'Inscription')
 
 @section('content')
-<div style="min-height:100vh;display:flex;align-items:center;justify-content:center;padding:2rem 1rem;">
+<div style="min-height:100vh;display:flex;align-items:center;justify-content:center;padding:2rem 1rem;background:#f6fafc;">
     <div style="width:100%;max-width:380px;">
         <div style="text-align:center;margin-bottom:2rem;">
-            <h1 style="font-family:'Syne',sans-serif;font-weight:800;font-size:28px;color:#0e0f1a;letter-spacing:-.03em;">
-                Kanban<span style="color:#4f6ef7;">Flow</span>
-            </h1>
-            <p style="color:#6b6d8a;font-size:14px;margin-top:6px;">Créez votre compte gratuitement</p>
+            <img src="{{ asset('logo.png') }}" alt="KanbanEsitec" class="brand-logo brand-logo-auth">
+            <p style="color:#64748b;font-size:14px;margin-top:6px;">Crée ton accès et rejoins ton équipe.</p>
         </div>
 
-        <div style="background:#fff;border:1px solid #e8e9f2;border-radius:20px;padding:32px;">
+        <div style="background:#fff;border:1px solid #dce8ef;border-radius:14px;padding:28px;box-shadow:0 12px 30px rgba(9,33,74,.06);">
             <form method="POST" action="{{ route('register') }}">
                 @csrf
 
                 <div style="margin-bottom:16px;">
-                    <label style="display:block;font-size:13px;font-weight:600;color:#252640;margin-bottom:6px;">Nom complet</label>
+                    <label style="display:block;font-size:13px;font-weight:600;color:#203a63;margin-bottom:6px;">Nom complet</label>
                     <input type="text" name="name" value="{{ old('name') }}" required autofocus autocomplete="name"
-                           placeholder="Jean Dupont"
-                           style="width:100%;padding:10px 14px;border:1px solid {{ $errors->has('name') ? '#fca5a5' : '#e8e9f2' }};border-radius:10px;font-size:13.5px;font-family:inherit;background:#f9f9fc;outline:none;transition:.15s;">
+                           style="width:100%;padding:10px 14px;border:1px solid {{ $errors->has('name') ? '#fca5a5' : '#dce8ef' }};border-radius:9px;font-size:13.5px;font-family:inherit;background:#f8fbfd;outline:none;transition:.15s;">
                     @error('name')
                         <p style="color:#dc2626;font-size:12px;margin-top:4px;">{{ $message }}</p>
                     @enderror
                 </div>
 
                 <div style="margin-bottom:16px;">
-                    <label style="display:block;font-size:13px;font-weight:600;color:#252640;margin-bottom:6px;">Adresse e-mail</label>
+                    <label style="display:block;font-size:13px;font-weight:600;color:#203a63;margin-bottom:6px;">Adresse e-mail</label>
                     <input type="email" name="email" value="{{ old('email') }}" required autocomplete="username"
-                           placeholder="vous@exemple.com"
-                           style="width:100%;padding:10px 14px;border:1px solid {{ $errors->has('email') ? '#fca5a5' : '#e8e9f2' }};border-radius:10px;font-size:13.5px;font-family:inherit;background:#f9f9fc;outline:none;transition:.15s;">
+                           style="width:100%;padding:10px 14px;border:1px solid {{ $errors->has('email') ? '#fca5a5' : '#dce8ef' }};border-radius:9px;font-size:13.5px;font-family:inherit;background:#f8fbfd;outline:none;transition:.15s;">
                     @error('email')
                         <p style="color:#dc2626;font-size:12px;margin-top:4px;">{{ $message }}</p>
                     @enderror
                 </div>
 
                 <div style="margin-bottom:16px;">
-                    <label style="display:block;font-size:13px;font-weight:600;color:#252640;margin-bottom:6px;">Mot de passe</label>
+                    <label style="display:block;font-size:13px;font-weight:600;color:#203a63;margin-bottom:6px;">Mot de passe</label>
                     <input type="password" name="password" required autocomplete="new-password"
-                           placeholder="********"
-                           style="width:100%;padding:10px 14px;border:1px solid {{ $errors->has('password') ? '#fca5a5' : '#e8e9f2' }};border-radius:10px;font-size:13.5px;font-family:inherit;background:#f9f9fc;outline:none;transition:.15s;">
+                           style="width:100%;padding:10px 14px;border:1px solid {{ $errors->has('password') ? '#fca5a5' : '#dce8ef' }};border-radius:9px;font-size:13.5px;font-family:inherit;background:#f8fbfd;outline:none;transition:.15s;">
                     @error('password')
                         <p style="color:#dc2626;font-size:12px;margin-top:4px;">{{ $message }}</p>
                     @enderror
                 </div>
 
                 <div style="margin-bottom:24px;">
-                    <label style="display:block;font-size:13px;font-weight:600;color:#252640;margin-bottom:6px;">Confirmer le mot de passe</label>
+                    <label style="display:block;font-size:13px;font-weight:600;color:#203a63;margin-bottom:6px;">Confirmer le mot de passe</label>
                     <input type="password" name="password_confirmation" required autocomplete="new-password"
-                           placeholder="********"
-                           style="width:100%;padding:10px 14px;border:1px solid #e8e9f2;border-radius:10px;font-size:13.5px;font-family:inherit;background:#f9f9fc;outline:none;transition:.15s;">
+                           style="width:100%;padding:10px 14px;border:1px solid #dce8ef;border-radius:9px;font-size:13.5px;font-family:inherit;background:#f8fbfd;outline:none;transition:.15s;">
                 </div>
 
-                <button type="submit" style="width:100%;padding:11px;border-radius:10px;font-size:14px;font-weight:700;background:#4f6ef7;color:#fff;border:none;cursor:pointer;transition:.15s;">
-                    Créer mon compte
+                <button type="submit" style="width:100%;padding:11px;border-radius:9px;font-size:14px;font-weight:700;background:#0b5f9f;color:#fff;border:none;cursor:pointer;transition:.15s;">
+                    Créer le compte
                 </button>
             </form>
         </div>
 
-        <p style="text-align:center;margin-top:20px;font-size:13px;color:#6b6d8a;">
-            Déjà un compte ?
-            <a href="{{ route('login') }}" style="color:#4f6ef7;font-weight:600;text-decoration:none;">Se connecter</a>
+        <p style="text-align:center;margin-top:20px;font-size:13px;color:#64748b;">
+            Tu as déjà un accès ?
+            <a href="{{ route('login') }}" style="color:#00786f;font-weight:600;text-decoration:none;">Se connecter</a>
         </p>
     </div>
 </div>

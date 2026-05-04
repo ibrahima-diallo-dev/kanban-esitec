@@ -26,10 +26,10 @@
                     Nom du projet <span class="text-red-500">*</span>
                 </label>
                 <input type="text" name="name" value="{{ old('name') }}"
-                       placeholder="Ex : Refonte du site vitrine"
+                       placeholder="Nom du projet"
                        class="w-full px-4 py-2.5 rounded-xl text-sm border transition-colors"
                        style="border-color:{{ $errors->has('name') ? '#fca5a5' : '#e8e9f2' }};outline:none;background:#f9f9fc;"
-                       onfocus="this.style.borderColor='#4f6ef7';this.style.background='#fff'"
+                       onfocus="this.style.borderColor='#0b5f9f';this.style.background='#fff'"
                        onblur="this.style.borderColor='{{ $errors->has('name') ? '#fca5a5' : '#e8e9f2' }}';this.style.background='#f9f9fc'">
                 @error('name')
                 <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
@@ -40,10 +40,10 @@
             <div class="mb-5">
                 <label class="block text-sm font-semibold text-ink-700 mb-1.5">Description</label>
                 <textarea name="description" rows="4"
-                          placeholder="Décrivez l'objectif du projet, les livrables attendus…"
+                          placeholder="Quelques lignes pour cadrer le travail"
                           class="w-full px-4 py-2.5 rounded-xl text-sm border transition-colors resize-none"
                           style="border-color:#e8e9f2;outline:none;background:#f9f9fc;font-family:inherit;"
-                          onfocus="this.style.borderColor='#4f6ef7';this.style.background='#fff'"
+                          onfocus="this.style.borderColor='#0b5f9f';this.style.background='#fff'"
                           onblur="this.style.borderColor='#e8e9f2';this.style.background='#f9f9fc'">{{ old('description') }}</textarea>
                 @error('description')
                 <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
@@ -56,12 +56,12 @@
                 <div style="border:1px solid #e8e9f2;border-radius:12px;overflow:hidden;background:#f9f9fc;">
                     @foreach($users as $user)
                     <label style="display:flex;align-items:center;gap:12px;padding:10px 14px;cursor:pointer;transition:.1s;border-bottom:1px solid #f0f0f8;"
-                           onmouseover="this.style.background='#f0f4ff'"
+                           onmouseover="this.style.background='#eaf4fb'"
                            onmouseout="this.style.background='transparent'">
                         <input type="checkbox" name="members[]" value="{{ $user->id }}"
                                {{ in_array($user->id, old('members', [])) ? 'checked' : '' }}
-                               style="width:15px;height:15px;accent-color:#4f6ef7;border-radius:4px;">
-                        <div style="width:30px;height:30px;border-radius:8px;background:linear-gradient(135deg,#4f6ef7,#7c3aed);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff;flex-shrink:0;">
+                               style="width:15px;height:15px;accent-color:#0b5f9f;border-radius:4px;">
+                        <div style="width:30px;height:30px;border-radius:8px;background:linear-gradient(135deg,#0b5f9f,#009e92);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff;flex-shrink:0;">
                             {{ strtoupper(substr($user->name, 0, 2)) }}
                         </div>
                         <div>
@@ -83,9 +83,9 @@
                     Annuler
                 </a>
                 <button type="submit"
-                        style="padding:9px 20px;border-radius:10px;font-size:13.5px;font-weight:600;background:#4f6ef7;color:#fff;border:none;cursor:pointer;transition:.15s;"
-                        onmouseover="this.style.background='#3b55e0'"
-                        onmouseout="this.style.background='#4f6ef7'">
+                        style="padding:9px 20px;border-radius:10px;font-size:13.5px;font-weight:600;background:#0b5f9f;color:#fff;border:none;cursor:pointer;transition:.15s;"
+                        onmouseover="this.style.background='#00786f'"
+                        onmouseout="this.style.background='#0b5f9f'">
                     Créer le projet
                 </button>
             </div>
