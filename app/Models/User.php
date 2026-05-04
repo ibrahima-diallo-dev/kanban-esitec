@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -26,11 +28,9 @@ class User extends Authenticatable
     {
         return [
             'email_verified_at' => 'datetime',
-            'password'          => 'hashed',
+            'password' => 'hashed',
         ];
     }
-
-    // ─── Helpers de rôle ───────────────────────────────────────────────────────
 
     public function isAdmin(): bool
     {
@@ -42,24 +42,24 @@ class User extends Authenticatable
         return $this->role === 'member';
     }
 
-    // ─── Relations ─────────────────────────────────────────────────────────────
-
-    public function projects()
+    public function projects(): BelongsToMany
     {
-        return $this->belongsToMany(Project::class)->withTimestamps();
+        return $this->belongsToMany(Project::class)
+            ->withPivot('role')
+            ->withTimestamps();
     }
 
-    public function createdProjects()
+    public function createdProjects(): HasMany
     {
         return $this->hasMany(Project::class, 'created_by');
     }
 
-    public function tasks()
+    public function tasks(): HasMany
     {
         return $this->hasMany(Task::class, 'assigned_to');
     }
 
-    public function comments()
+    public function comments(): HasMany
     {
         return $this->hasMany(Comment::class);
     }

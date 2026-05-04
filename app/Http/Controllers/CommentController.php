@@ -10,25 +10,23 @@ use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
 {
-    /**
-     * Ajouter un commentaire sur une tâche.
-     */
     public function store(StoreCommentRequest $request, Project $project, Task $task)
     {
+        abort_unless($task->project_id === $project->id, 404);
+
         $task->comments()->create([
-            'body'    => $request->body,
+            'body' => $request->body,
             'user_id' => Auth::id(),
         ]);
 
-        return redirect()->route('projects.tasks.show', [$project, $task])
-                         ->with('success', 'Commentaire ajouté.');
+        return redirect()->route('tasks.show', [$project, $task])
+            ->with('success', 'Commentaire ajouté.');
     }
 
-    /**
-     * Supprimer un commentaire (auteur ou admin seulement).
-     */
     public function destroy(Project $project, Task $task, Comment $comment)
     {
+        abort_unless($task->project_id === $project->id && $comment->task_id === $task->id, 404);
+
         $user = Auth::user();
 
         if (! $user->isAdmin() && $comment->user_id !== $user->id) {
@@ -37,7 +35,7 @@ class CommentController extends Controller
 
         $comment->delete();
 
-        return redirect()->route('projects.tasks.show', [$project, $task])
-                         ->with('success', 'Commentaire supprimé.');
+        return redirect()->route('tasks.show', [$project, $task])
+            ->with('success', 'Commentaire supprimé.');
     }
 }

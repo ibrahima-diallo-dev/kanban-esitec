@@ -21,8 +21,8 @@ class ProjectController extends Controller
         $user = Auth::user();
 
         $projects = $user->isAdmin()
-            ? Project::with('creator')->latest()->paginate(10)
-            : Project::forUser($user)->with('creator')->latest()->paginate(10);
+            ? Project::with(['creator', 'members'])->latest()->paginate(10)
+            : Project::forUser($user)->with(['creator', 'members'])->latest()->paginate(10);
 
         return view('projects.index', compact('projects'));
     }
@@ -49,7 +49,7 @@ class ProjectController extends Controller
 
         // Attacher les membres sélectionnés
         if ($request->has('members')) {
-            $project->members()->sync($request->members);
+            $project->members()->syncWithPivotValues($request->members, ['role' => 'member']);
         }
 
         return redirect()->route('projects.index')
@@ -63,12 +63,13 @@ class ProjectController extends Controller
     {
         $this->authorizeProjectAccess($project);
 
-        $todo       = $project->tasks()->todo()->with('assignee')->get();
-        $inProgress = $project->tasks()->inProgress()->with('assignee')->get();
-        $done       = $project->tasks()->done()->with('assignee')->get();
+        $project->load('members');
+        $todo = $project->tasks()->toDo()->with('assignedUser')->get();
+        $doing = $project->tasks()->doing()->with('assignedUser')->get();
+        $done = $project->tasks()->done()->with('assignedUser')->get();
         $members    = $project->members;
 
-        return view('projects.show', compact('project', 'todo', 'inProgress', 'done', 'members'));
+        return view('projects.show', compact('project', 'todo', 'doing', 'done', 'members'));
     }
 
     /**
@@ -90,7 +91,9 @@ class ProjectController extends Controller
         $project->update($request->only('name', 'description'));
 
         if ($request->has('members')) {
-            $project->members()->sync($request->members);
+            $project->members()->syncWithPivotValues($request->members, ['role' => 'member']);
+        } else {
+            $project->members()->sync([]);
         }
 
         return redirect()->route('projects.show', $project)

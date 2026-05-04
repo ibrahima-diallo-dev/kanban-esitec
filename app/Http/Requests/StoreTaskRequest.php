@@ -17,7 +17,8 @@ class StoreTaskRequest extends FormRequest
         return [
             'title'       => ['required', 'string', 'max:255'],
             'description' => ['nullable', 'string'],
-            'status'      => ['required', Rule::in(['todo', 'in_progress', 'done'])],
+            'status'      => ['required', Rule::in(['todo', 'doing', 'done'])],
+            'priority'    => ['required', Rule::in(['haute', 'moyenne', 'basse'])],
             'assigned_to' => ['nullable', 'exists:users,id'],
         ];
     }
@@ -27,7 +28,8 @@ class StoreTaskRequest extends FormRequest
         return [
             'title.required'  => 'Le titre de la tâche est obligatoire.',
             'status.required' => 'Le statut est obligatoire.',
-            'status.in'       => 'Le statut doit être : todo, in_progress ou done.',
+            'status.in'       => 'Le statut doit être : todo, doing ou done.',
+            'priority.in'     => 'La priorité doit être : haute, moyenne ou basse.',
             'assigned_to.exists' => 'L\'utilisateur assigné n\'existe pas.',
         ];
     }
